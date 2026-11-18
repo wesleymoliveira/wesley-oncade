@@ -1,0 +1,34 @@
+{
+  "family": "campaign-join-open",
+  "at": "2026-11-17",
+  "calls": [
+    {
+      "endpoint": "POST /campaigns",
+      "status": 201,
+      "code": null,
+      "asked": "create a campaign"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/users/{userRef}/link/initiate",
+      "status": 201,
+      "code": null,
+      "asked": "a campaign link for the second person"
+    },
+    {
+      "endpoint": "POST /business/users/link/initiate",
+      "status": 200,
+      "code": null,
+      "asked": "a business link for the second person"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/fund-sessions",
+      "status": 201,
+      "code": null,
+      "asked": "a fund session for the owner"
+    }
+  ],
+  "answers": {
+    "opened": "campaign 201 active; campaign link 201; business link 200; fund session 201",
+    "webhooks delivered": "not listening: no receiver was recording deliveries"
+  }
+}

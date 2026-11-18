@@ -1,0 +1,17 @@
+{
+  "status": 200,
+  "body": {
+    "platformId": "text",
+    "name": "text",
+    "description": "text",
+    "status": "pending",
+    "approvedScopes": ["platform:read", "platform.key:manage", "platform.invite:manage"],
+    "pendingScopes": [],
+    "keyInfo": {
+      "keyId": "text",
+      "environment": "test",
+      "activeScopes": ["platform:read", "platform.key:manage", "platform.invite:manage"],
+      "requestedScopes": ["platform:read", "platform.key:manage", "platform.invite:manage"]
+    }
+  }
+}

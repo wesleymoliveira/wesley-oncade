@@ -1,0 +1,6 @@
+{
+  "status": 410,
+  "body": {
+    "error": "Endpoint not found.  Did you mean /api/v1/ for your api call?."
+  }
+}

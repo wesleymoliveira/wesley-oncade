@@ -1,0 +1,16 @@
+{
+  "status": 200,
+  "body": {
+    "ready": true,
+    "steps": {
+      "payoutWallet": "text",
+      "address": "text",
+      "kybVerification": "text"
+    },
+    "links": {
+      "home": "https://pay.oncade.xyz/…",
+      "kyb": "https://pay.oncade.xyz/…",
+      "signIn": "https://pay.oncade.xyz/…"
+    }
+  }
+}

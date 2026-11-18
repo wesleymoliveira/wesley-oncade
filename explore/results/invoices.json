@@ -1,0 +1,157 @@
+{
+  "family": "invoices",
+  "at": "2026-11-17",
+  "calls": [
+    {
+      "endpoint": "POST /invoices",
+      "status": 201,
+      "code": null,
+      "asked": "create a draft"
+    },
+    {
+      "endpoint": "PUT /invoices/{invoiceId}",
+      "status": 200,
+      "code": null,
+      "asked": "replace the draft"
+    },
+    {
+      "endpoint": "POST /invoices/{invoiceId}/send",
+      "status": 200,
+      "code": null,
+      "asked": "send it, no e-mail"
+    },
+    {
+      "endpoint": "GET /invoices/{invoiceId}",
+      "status": 200,
+      "code": null,
+      "asked": "read it"
+    },
+    {
+      "endpoint": "GET /invoices",
+      "status": 200,
+      "code": null,
+      "asked": "list the sent ones"
+    },
+    {
+      "endpoint": "GET /invoices/export",
+      "status": 200,
+      "code": null,
+      "asked": "export it as CSV"
+    },
+    {
+      "endpoint": "POST /invoices",
+      "status": 400,
+      "code": null,
+      "asked": "no items"
+    },
+    {
+      "endpoint": "POST /invoices",
+      "status": 400,
+      "code": null,
+      "asked": "two kinds of receiver"
+    },
+    {
+      "endpoint": "POST /invoices",
+      "status": 400,
+      "code": null,
+      "asked": "a total that does not add up"
+    },
+    {
+      "endpoint": "POST /invoices",
+      "status": 400,
+      "code": null,
+      "asked": "due before its date"
+    },
+    {
+      "endpoint": "POST /invoices",
+      "status": 400,
+      "code": null,
+      "asked": "a negative amount"
+    },
+    {
+      "endpoint": "GET /invoices/export",
+      "status": 400,
+      "code": null,
+      "asked": "export with a status that does not exist"
+    },
+    {
+      "endpoint": "POST /invoices",
+      "status": 400,
+      "code": null,
+      "asked": "a key that is not a UUID"
+    },
+    {
+      "endpoint": "POST /invoices",
+      "status": 201,
+      "code": null,
+      "asked": "create with a key"
+    },
+    {
+      "endpoint": "POST /invoices",
+      "status": 201,
+      "code": null,
+      "asked": "the same create, same key"
+    },
+    {
+      "endpoint": "POST /invoices/{invoiceId}/send",
+      "status": 422,
+      "code": "INVOICE_INVALID_STATUS",
+      "asked": "send what is already sent"
+    },
+    {
+      "endpoint": "POST /invoices/{invoiceId}/cancel",
+      "status": 200,
+      "code": null,
+      "asked": "cancel it"
+    },
+    {
+      "endpoint": "PUT /invoices/{invoiceId}",
+      "status": 403,
+      "code": null,
+      "asked": "update a cancelled one"
+    },
+    {
+      "endpoint": "POST /invoices/{invoiceId}/send",
+      "status": 422,
+      "code": "INVOICE_INVALID_STATUS",
+      "asked": "send a cancelled one"
+    },
+    {
+      "endpoint": "GET /invoices/{invoiceId}",
+      "status": 404,
+      "code": "INVOICE_NOT_FOUND",
+      "asked": "read an id that does not exist"
+    },
+    {
+      "endpoint": "GET /invoices/{invoiceId}",
+      "status": 404,
+      "code": "INVOICE_NOT_FOUND",
+      "asked": "read something that is not an id"
+    },
+    {
+      "endpoint": "POST /invoices/{invoiceId}/cancel",
+      "status": 422,
+      "code": "INVOICE_INVALID_STATUS",
+      "asked": "clean up"
+    },
+    {
+      "endpoint": "POST /invoices/{invoiceId}/cancel",
+      "status": 200,
+      "code": null,
+      "asked": "clean up"
+    },
+    {
+      "endpoint": "POST /invoices/{invoiceId}/cancel",
+      "status": 200,
+      "code": null,
+      "asked": "clean up"
+    }
+  ],
+  "answers": {
+    "happy path": "create 201 draft; update 200 draft, total 3; send 200 sent, emailSuppressed true; read 200 sent; list 200, 1 sent; export 200, 1 data lines",
+    "validation": "no items 400; both receivers 400; wrong total 400; due before date 400; negative amount 400; export status=bogus 400; a key that is not a UUID 400",
+    "repeated key": "the second create made a second invoice (201 draft)",
+    "wrong state": "send twice 422 INVOICE_INVALID_STATUS; cancel 200 cancelled; update cancelled 403; send cancelled 422 INVOICE_INVALID_STATUS; unknown id 404 INVOICE_NOT_FOUND; malformed id 404 INVOICE_NOT_FOUND",
+    "webhooks delivered": "Platform.Invoice.Created × 3, Platform.Invoice.Updated × 1, Platform.Invoice.Sent × 1, Platform.Invoice.Cancelled × 3"
+  }
+}

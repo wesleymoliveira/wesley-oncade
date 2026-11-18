@@ -1,0 +1,97 @@
+{
+  "family": "business-users",
+  "at": "2026-11-17",
+  "calls": [
+    {
+      "endpoint": "POST /business/users/link/initiate",
+      "status": 201,
+      "code": null,
+      "asked": "a link session for a person"
+    },
+    {
+      "endpoint": "GET /business/users/link/details",
+      "status": 200,
+      "code": null,
+      "asked": "read the link session"
+    },
+    {
+      "endpoint": "GET /business/users",
+      "status": 200,
+      "code": null,
+      "asked": "who is linked"
+    },
+    {
+      "endpoint": "GET /business/users",
+      "status": 200,
+      "code": null,
+      "asked": "search the linked users"
+    },
+    {
+      "endpoint": "POST /business/users/link/initiate",
+      "status": 200,
+      "code": null,
+      "asked": "the same person again"
+    },
+    {
+      "endpoint": "POST /business/users/link/initiate",
+      "status": 201,
+      "code": null,
+      "asked": "a link session with no address"
+    },
+    {
+      "endpoint": "POST /business/users/link/initiate",
+      "status": 200,
+      "code": null,
+      "asked": "the same, same key"
+    },
+    {
+      "endpoint": "POST /business/users/link/initiate",
+      "status": 400,
+      "code": null,
+      "asked": "an address that is not one"
+    },
+    {
+      "endpoint": "GET /business/users/link/details",
+      "status": 400,
+      "code": null,
+      "asked": "details with no session"
+    },
+    {
+      "endpoint": "GET /business/users/link/details",
+      "status": 404,
+      "code": "SESSION_NOT_FOUND",
+      "asked": "details of a session that does not exist"
+    },
+    {
+      "endpoint": "GET /business/users/{userRef}/wallet/balance",
+      "status": 404,
+      "code": "USER_NOT_LINKED",
+      "asked": "the balance of someone unknown"
+    },
+    {
+      "endpoint": "POST /business/users/{userRef}/campaigns/{campaignId}/assign",
+      "status": 404,
+      "code": "CAMPAIGN_NOT_FOUND",
+      "asked": "assign someone unknown to a campaign"
+    },
+    {
+      "endpoint": "POST /business/users/{userRef}/link/remove",
+      "status": 404,
+      "code": "USER_REF_NOT_FOUND",
+      "asked": "remove someone unknown"
+    },
+    {
+      "endpoint": "GET /business/users/{userRef}/compliance",
+      "status": 404,
+      "code": "USER_REF_NOT_FOUND",
+      "asked": "the compliance call the reference names in passing"
+    }
+  ],
+  "answers": {
+    "happy path": "link session 201; details 200 pending; list 200, 0 linked; search 200",
+    "repeated key": "the same address twice: 200, the same session; no address, the same key twice: 200, the same session",
+    "validation": "bad address 400; no session 400; unknown session 404 SESSION_NOT_FOUND",
+    "wrong state": "balance 404 USER_NOT_LINKED; assign 404 CAMPAIGN_NOT_FOUND; remove 404 USER_REF_NOT_FOUND; compliance (named in the text, not listed) 404 USER_REF_NOT_FOUND",
+    "webhooks delivered": "User.Account.Link.Started × 2"
+  }
+}

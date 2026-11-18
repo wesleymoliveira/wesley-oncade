@@ -1,0 +1,7 @@
+{
+  "status": 400,
+  "body": {
+    "error": "A payout can have at most 20 recipients. This one has 21.",
+    "code": "TOO_MANY_RECIPIENTS"
+  }
+}

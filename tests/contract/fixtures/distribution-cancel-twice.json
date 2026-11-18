@@ -1,0 +1,7 @@
+{
+  "status": 422,
+  "body": {
+    "error": "Cannot cancel distribution in 'cancelled' status",
+    "code": "DISTRIBUTION_NOT_CANCELLABLE"
+  }
+}

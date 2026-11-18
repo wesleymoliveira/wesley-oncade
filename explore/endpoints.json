@@ -1,0 +1,377 @@
+[
+  {
+    "endpoint": "GET /me",
+    "name": "Get Platform Info",
+    "family": "Platform"
+  },
+  {
+    "endpoint": "POST /me/scopes",
+    "name": "Request Additional Scopes",
+    "family": "Platform"
+  },
+  {
+    "endpoint": "GET /me/keys",
+    "name": "List API Keys",
+    "family": "API keys"
+  },
+  {
+    "endpoint": "POST /me/keys",
+    "name": "Create API Key",
+    "family": "API keys"
+  },
+  {
+    "endpoint": "GET /me/keys/{keyId}",
+    "name": "Get API Key Details",
+    "family": "API keys"
+  },
+  {
+    "endpoint": "DELETE /me/keys/{keyId}",
+    "name": "Revoke API Key",
+    "family": "API keys"
+  },
+  {
+    "endpoint": "POST /me/keys/{keyId}/rotate",
+    "name": "Rotate API Key",
+    "family": "API keys"
+  },
+  {
+    "endpoint": "GET /link-sessions",
+    "name": "List Link Sessions",
+    "family": "Link sessions"
+  },
+  {
+    "endpoint": "POST /link-sessions",
+    "name": "Create Link Session",
+    "family": "Link sessions"
+  },
+  {
+    "endpoint": "GET /link-sessions/{sessionId}",
+    "name": "Get Link Session",
+    "family": "Link sessions"
+  },
+  {
+    "endpoint": "DELETE /link-sessions/{sessionId}",
+    "name": "Cancel Link Session",
+    "family": "Link sessions"
+  },
+  {
+    "endpoint": "GET /grants",
+    "name": "List Grants",
+    "family": "Grants"
+  },
+  {
+    "endpoint": "POST /grants/{grantId}/revoke",
+    "name": "Revoke Grant",
+    "family": "Grants"
+  },
+  {
+    "endpoint": "GET /invites",
+    "name": "List Invites",
+    "family": "Invites"
+  },
+  {
+    "endpoint": "POST /invites",
+    "name": "Send Direct Invite",
+    "family": "Invites"
+  },
+  {
+    "endpoint": "POST /invites/{inviteId}/cancel",
+    "name": "Cancel Invite",
+    "family": "Invites"
+  },
+  {
+    "endpoint": "GET /campaigns",
+    "name": "List Campaigns",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "POST /campaigns",
+    "name": "Create Campaign",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "GET /campaigns/{campaignId}",
+    "name": "Get Campaign",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "PATCH /campaigns/{campaignId}",
+    "name": "Update Campaign",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "DELETE /campaigns/{campaignId}",
+    "name": "Delete Campaign",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "POST /campaigns/{campaignId}/users/{userRef}/link/initiate",
+    "name": "Create Campaign Link Session",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "GET /campaigns/{campaignId}/users/link/details",
+    "name": "Get Campaign Link Session Details",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "POST /campaigns/{campaignId}/link-invites",
+    "name": "Create Campaign Link Invite",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "GET /campaigns/{campaignId}/link-invites",
+    "name": "List Campaign Link Invites",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "PATCH /campaigns/{campaignId}/link-invites/{code}",
+    "name": "Update Campaign Link Invite",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "DELETE /campaigns/{campaignId}/link-invites/{code}",
+    "name": "Revoke Campaign Link Invite",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "POST /campaigns/{campaignId}/events",
+    "name": "Record Campaign Event",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "PUT /campaigns/{campaignId}/start",
+    "name": "Start Campaign",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "PUT /campaigns/{campaignId}/stop",
+    "name": "Stop Campaign",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "POST /campaigns/{campaignId}/fund-sessions",
+    "name": "Create Fund Session",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "POST /campaigns/{campaignId}/users/{userRef}/link/remove",
+    "name": "Remove Campaign Account Link (Leave Campaign)",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "GET /campaigns/{campaignId}/users",
+    "name": "List Campaign Linked Users",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "GET /campaigns/{campaignId}/fund-sessions/{handle}",
+    "name": "Get Fund Session",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "GET /campaigns/{campaignId}/users/{userRef}/wallet/balance",
+    "name": "Get Campaign User Wallet Balance",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "GET /campaigns/{campaignId}/payout-wallet/balance",
+    "name": "Get Campaign Payout Wallet Balance",
+    "family": "Campaigns"
+  },
+  {
+    "endpoint": "GET /business/wallet-balance",
+    "name": "Get Business Wallet Balance",
+    "family": "Businesses"
+  },
+  {
+    "endpoint": "POST /business/users/link/initiate",
+    "name": "Initiate Business User Link",
+    "family": "Business users"
+  },
+  {
+    "endpoint": "GET /business/users/link/details",
+    "name": "Business User Link Status",
+    "family": "Business users"
+  },
+  {
+    "endpoint": "GET /business/users",
+    "name": "List Business Linked Users",
+    "family": "Business users"
+  },
+  {
+    "endpoint": "GET /business/users/{userRef}/wallet/balance",
+    "name": "Business User Wallet Balance",
+    "family": "Business users"
+  },
+  {
+    "endpoint": "POST /business/users/{userRef}/campaigns/{campaignId}/assign",
+    "name": "Assign Business User to Campaign",
+    "family": "Business users"
+  },
+  {
+    "endpoint": "POST /business/users/{userRef}/link/remove",
+    "name": "Remove Business User Link",
+    "family": "Business users"
+  },
+  {
+    "endpoint": "GET /invoices",
+    "name": "List Invoices",
+    "family": "Invoices"
+  },
+  {
+    "endpoint": "POST /invoices",
+    "name": "Create Invoice",
+    "family": "Invoices"
+  },
+  {
+    "endpoint": "GET /invoices/{invoiceId}",
+    "name": "Get Invoice",
+    "family": "Invoices"
+  },
+  {
+    "endpoint": "PUT /invoices/{invoiceId}",
+    "name": "Update Invoice",
+    "family": "Invoices"
+  },
+  {
+    "endpoint": "POST /invoices/{invoiceId}/send",
+    "name": "Send Invoice",
+    "family": "Invoices"
+  },
+  {
+    "endpoint": "POST /invoices/{invoiceId}/cancel",
+    "name": "Cancel Invoice",
+    "family": "Invoices"
+  },
+  {
+    "endpoint": "GET /invoices/export",
+    "name": "Export Invoices (CSV)",
+    "family": "Invoices"
+  },
+  {
+    "endpoint": "GET /invoice-templates",
+    "name": "List Recurring Invoices",
+    "family": "Recurring invoices"
+  },
+  {
+    "endpoint": "POST /invoice-templates",
+    "name": "Create Recurring Invoice",
+    "family": "Recurring invoices"
+  },
+  {
+    "endpoint": "GET /invoice-templates/{templateId}",
+    "name": "Get Recurring Invoice",
+    "family": "Recurring invoices"
+  },
+  {
+    "endpoint": "PUT /invoice-templates/{templateId}",
+    "name": "Update Recurring Invoice",
+    "family": "Recurring invoices"
+  },
+  {
+    "endpoint": "DELETE /invoice-templates/{templateId}",
+    "name": "Delete Recurring Invoice",
+    "family": "Recurring invoices"
+  },
+  {
+    "endpoint": "POST /business",
+    "name": "Create Business",
+    "family": "Businesses"
+  },
+  {
+    "endpoint": "GET /business",
+    "name": "Get Business",
+    "family": "Businesses"
+  },
+  {
+    "endpoint": "PATCH /business",
+    "name": "Update Business",
+    "family": "Businesses"
+  },
+  {
+    "endpoint": "GET /business/readiness",
+    "name": "Get Business Readiness",
+    "family": "Businesses"
+  },
+  {
+    "endpoint": "GET /distributions",
+    "name": "List Distributions",
+    "family": "Distributions"
+  },
+  {
+    "endpoint": "POST /distributions",
+    "name": "Create Distribution",
+    "family": "Distributions"
+  },
+  {
+    "endpoint": "GET /distributions/fee-preview",
+    "name": "Preview Distribution Fees",
+    "family": "Distributions"
+  },
+  {
+    "endpoint": "POST /distributions/{distributionId}/cancel",
+    "name": "Cancel Distribution",
+    "family": "Distributions"
+  },
+  {
+    "endpoint": "POST /distributions/{distributionId}/direct-transfers/mark-sent",
+    "name": "Mark Direct Transfers Sent",
+    "family": "Distributions"
+  },
+  {
+    "endpoint": "POST /distributions/{distributionId}/fund-sessions",
+    "name": "Create Distribution Fund Session",
+    "family": "Distributions"
+  },
+  {
+    "endpoint": "GET /distributions/{distributionId}/fund-sessions/{sessionHandle}",
+    "name": "Get Distribution Fund Session",
+    "family": "Distributions"
+  },
+  {
+    "endpoint": "DELETE /distributions/{distributionId}/fund-sessions/{sessionHandle}",
+    "name": "Revoke Distribution Fund Session",
+    "family": "Distributions"
+  },
+  {
+    "endpoint": "GET /split-templates",
+    "name": "List Split Templates",
+    "family": "Split templates"
+  },
+  {
+    "endpoint": "POST /split-templates",
+    "name": "Create Split Template",
+    "family": "Split templates"
+  },
+  {
+    "endpoint": "GET /split-templates/{templateId}",
+    "name": "Get Split Template",
+    "family": "Split templates"
+  },
+  {
+    "endpoint": "PATCH /split-templates/{templateId}",
+    "name": "Update Split Template",
+    "family": "Split templates"
+  },
+  {
+    "endpoint": "DELETE /split-templates/{templateId}",
+    "name": "Delete Split Template",
+    "family": "Split templates"
+  },
+  {
+    "endpoint": "POST /gifts/bulk",
+    "name": "Create Bulk Gifts",
+    "family": "Gifts"
+  },
+  {
+    "endpoint": "POST /gifts/mark-funded",
+    "name": "Mark Gifts Funded",
+    "family": "Gifts"
+  },
+  {
+    "endpoint": "POST /lookup-emails",
+    "name": "Lookup Emails",
+    "family": "Distributions"
+  }
+]

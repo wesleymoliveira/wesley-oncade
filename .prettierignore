@@ -1,0 +1,9 @@
+.next
+node_modules
+coverage
+.local
+package-lock.json
+observability/dashboard.json
+observability/prometheus.yaml
+next-env.d.ts
+.vitest

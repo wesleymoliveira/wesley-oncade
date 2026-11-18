@@ -1,0 +1,46 @@
+{
+  "family": "gifts",
+  "at": "2026-11-17",
+  "calls": [
+    {
+      "endpoint": "POST /distributions",
+      "status": 201,
+      "code": null,
+      "asked": "a payout paid from the dashboard"
+    },
+    {
+      "endpoint": "POST /gifts/mark-funded",
+      "status": 400,
+      "code": null,
+      "asked": "mark gifts funded on that payout"
+    },
+    {
+      "endpoint": "POST /gifts/mark-funded",
+      "status": 409,
+      "code": "PAYOUT_PATH_MISMATCH",
+      "asked": "mark a gift that does not exist as funded"
+    },
+    {
+      "endpoint": "POST /gifts/mark-funded",
+      "status": 400,
+      "code": null,
+      "asked": "mark gifts funded with nothing in it"
+    },
+    {
+      "endpoint": "POST /gifts/bulk",
+      "status": 400,
+      "code": null,
+      "asked": "bulk gifts with no recipients"
+    },
+    {
+      "endpoint": "POST /distributions/{distributionId}/cancel",
+      "status": 200,
+      "code": null,
+      "asked": "clean up"
+    }
+  ],
+  "answers": {
+    "wrong payout path": "gifts/mark-funded on a dashboard payout: no gifts 400, a gift that does not exist 409 PAYOUT_PATH_MISMATCH; with an empty body 400; gifts/bulk with no recipients 400",
+    "webhooks delivered": "Platform.Distribution.Created × 1, Platform.Distribution.Cancelled × 1"
+  }
+}

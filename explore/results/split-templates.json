@@ -1,0 +1,146 @@
+{
+  "family": "split-templates",
+  "at": "2026-11-17",
+  "calls": [
+    {
+      "endpoint": "POST /split-templates",
+      "status": 201,
+      "code": null,
+      "asked": "create a template"
+    },
+    {
+      "endpoint": "GET /split-templates/{templateId}",
+      "status": 200,
+      "code": null,
+      "asked": "read it"
+    },
+    {
+      "endpoint": "GET /split-templates",
+      "status": 200,
+      "code": null,
+      "asked": "list them"
+    },
+    {
+      "endpoint": "PATCH /split-templates/{templateId}",
+      "status": 200,
+      "code": null,
+      "asked": "rename it"
+    },
+    {
+      "endpoint": "POST /distributions",
+      "status": 201,
+      "code": null,
+      "asked": "a payout from the template"
+    },
+    {
+      "endpoint": "POST /split-templates",
+      "status": 400,
+      "code": "INVALID_RECIPIENTS",
+      "asked": "percentages that do not add up"
+    },
+    {
+      "endpoint": "POST /split-templates",
+      "status": 400,
+      "code": "TOO_MANY_RECIPIENTS",
+      "asked": "21 recipients"
+    },
+    {
+      "endpoint": "POST /split-templates",
+      "status": 400,
+      "code": null,
+      "asked": "no name"
+    },
+    {
+      "endpoint": "POST /split-templates",
+      "status": 201,
+      "code": null,
+      "asked": "a fixed-amount template"
+    },
+    {
+      "endpoint": "POST /split-templates",
+      "status": 201,
+      "code": null,
+      "asked": "create with a key"
+    },
+    {
+      "endpoint": "POST /split-templates",
+      "status": 409,
+      "code": "DUPLICATE_NAME",
+      "asked": "the same create, same key"
+    },
+    {
+      "endpoint": "DELETE /split-templates/{templateId}",
+      "status": 204,
+      "code": null,
+      "asked": "archive it"
+    },
+    {
+      "endpoint": "DELETE /split-templates/{templateId}",
+      "status": 404,
+      "code": null,
+      "asked": "archive it twice"
+    },
+    {
+      "endpoint": "GET /split-templates/{templateId}",
+      "status": 404,
+      "code": null,
+      "asked": "read an archived one"
+    },
+    {
+      "endpoint": "PATCH /split-templates/{templateId}",
+      "status": 404,
+      "code": null,
+      "asked": "rename an archived one"
+    },
+    {
+      "endpoint": "POST /distributions",
+      "status": 404,
+      "code": "TEMPLATE_NOT_FOUND",
+      "asked": "a payout from an archived template"
+    },
+    {
+      "endpoint": "GET /split-templates/{templateId}",
+      "status": 404,
+      "code": null,
+      "asked": "read an id that does not exist"
+    },
+    {
+      "endpoint": "POST /distributions/{distributionId}/cancel",
+      "status": 200,
+      "code": null,
+      "asked": "clean up"
+    },
+    {
+      "endpoint": "DELETE /split-templates/{templateId}",
+      "status": 404,
+      "code": null,
+      "asked": "clean up"
+    },
+    {
+      "endpoint": "DELETE /split-templates/{templateId}",
+      "status": 204,
+      "code": null,
+      "asked": "clean up"
+    },
+    {
+      "endpoint": "DELETE /split-templates/{templateId}",
+      "status": 204,
+      "code": null,
+      "asked": "clean up"
+    },
+    {
+      "endpoint": "GET /split-templates",
+      "status": 200,
+      "code": null,
+      "asked": "what is left"
+    }
+  ],
+  "answers": {
+    "happy path": "create 201; read 200; list 200, 1 found; rename 200; payout from it 201 pending, lines 600+400 cents",
+    "validation": "percentages≠100 400 INVALID_RECIPIENTS; 21 recipients 400 TOO_MANY_RECIPIENTS; no name 400; fixed mode 201",
+    "repeated key": "the second create was refused (409 DUPLICATE_NAME): the unique name stops the duplicate, not the key",
+    "wrong state": "archive 204; archive twice 404; read archived 404; rename archived 404; payout from archived 404 TEMPLATE_NOT_FOUND; unknown id 404",
+    "left behind": "0 template(s) still listed",
+    "webhooks delivered": "Platform.SplitTemplate.Created × 3, Platform.SplitTemplate.Updated × 1, Platform.Distribution.Created × 1, Platform.SplitTemplate.Deleted × 3, Platform.Distribution.Cancelled × 1"
+  }
+}

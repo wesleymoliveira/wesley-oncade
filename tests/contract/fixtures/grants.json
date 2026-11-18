@@ -1,0 +1,17 @@
+{
+  "status": 200,
+  "body": {
+    "grants": [
+      {
+        "_id": "000000000000000000000001",
+        "platformId": "text",
+        "businessId": "000000000000000000000002",
+        "grantedScopes": ["vc:credit", "vc:debit", "vc:balance:read"],
+        "grantedBy": "000000000000000000000003",
+        "status": "active",
+        "createdAt": "2026-11-16T12:00:00.000Z"
+      }
+    ],
+    "total": 1
+  }
+}

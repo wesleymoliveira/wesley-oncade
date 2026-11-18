@@ -1,0 +1,127 @@
+{
+  "family": "campaign-join-close",
+  "at": "2026-11-17",
+  "calls": [
+    {
+      "endpoint": "GET /campaigns/{campaignId}/users/link/details",
+      "status": 200,
+      "code": null,
+      "asked": "did the second person join the campaign"
+    },
+    {
+      "endpoint": "GET /business/users/link/details",
+      "status": 200,
+      "code": null,
+      "asked": "did the second person join the business"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}/fund-sessions/{handle}",
+      "status": 200,
+      "code": null,
+      "asked": "did the owner fund the campaign"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}/users",
+      "status": 200,
+      "code": null,
+      "asked": "who joined the campaign"
+    },
+    {
+      "endpoint": "GET /business/users",
+      "status": 200,
+      "code": null,
+      "asked": "who is linked to the business"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}",
+      "status": 200,
+      "code": null,
+      "asked": "the campaign before the event"
+    },
+    {
+      "endpoint": "PUT /campaigns/{campaignId}/start",
+      "status": 500,
+      "code": null,
+      "asked": "start the campaign"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/events",
+      "status": 404,
+      "code": null,
+      "asked": "record the event for the second person"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}",
+      "status": 200,
+      "code": null,
+      "asked": "the campaign after the event"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}/users/{userRef}/wallet/balance",
+      "status": 200,
+      "code": null,
+      "asked": "what the second person holds, by campaign"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/events",
+      "status": 404,
+      "code": null,
+      "asked": "a one-time tip of 1"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}",
+      "status": 200,
+      "code": null,
+      "asked": "the campaign after the tip"
+    },
+    {
+      "endpoint": "GET /business/users/{userRef}/wallet/balance",
+      "status": 200,
+      "code": null,
+      "asked": "what the second person holds, by business"
+    },
+    {
+      "endpoint": "POST /business/users/{userRef}/campaigns/{campaignId}/assign",
+      "status": 200,
+      "code": null,
+      "asked": "assign the business user to the campaign"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/users/{userRef}/link/remove",
+      "status": 200,
+      "code": null,
+      "asked": "the second person leaves the campaign"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/events",
+      "status": 404,
+      "code": null,
+      "asked": "an event for someone who left"
+    },
+    {
+      "endpoint": "POST /business/users/{userRef}/link/remove",
+      "status": 200,
+      "code": null,
+      "asked": "unlink the second person from the business"
+    },
+    {
+      "endpoint": "PUT /campaigns/{campaignId}/stop",
+      "status": 500,
+      "code": null,
+      "asked": "stop the campaign"
+    },
+    {
+      "endpoint": "DELETE /campaigns/{campaignId}",
+      "status": 204,
+      "code": null,
+      "asked": "delete the campaign"
+    }
+  ],
+  "answers": {
+    "joining and funding": "campaign link 200 approved; business link 200 approved; fund session 200 completed; 1 in the campaign, 1 linked to the business; campaign balance {\"totalFunded\":5000000,\"totalPaidOut\":0,\"available\":5000000}",
+    "events": "start 500; event with payoutAmount 1 404, campaign balance then {\"totalFunded\":5000000,\"totalPaidOut\":0,\"available\":5000000}, the person holds \"0.00\"; tip of 1 404, campaign balance then {\"totalFunded\":5000000,\"totalPaidOut\":0,\"available\":5000000}",
+    "leaving": "business wallet 200; assign 200; leave the campaign 200; event after leaving 404; unlink from the business 200",
+    "clean up": "stop 500; delete 204",
+    "webhooks delivered": "not listening: no receiver was recording deliveries"
+  }
+}

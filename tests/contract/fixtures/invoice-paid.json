@@ -1,0 +1,57 @@
+{
+  "status": 200,
+  "body": {
+    "_id": "000000000000000000000016",
+    "userId": "000000000000000000000003",
+    "invoiceNumber": "text",
+    "receiverName": "text",
+    "receiverEmail": "person@example.com",
+    "date": "2026-11-16",
+    "payToAddress": "0x0000000000000000000000000000000000000000",
+    "payToTarget": "BUSINESS",
+    "payToName": "text",
+    "items": [
+      {
+        "_id": "000000000000000000000017",
+        "description": "text",
+        "quantity": 1,
+        "rate": 6,
+        "amount": 6
+      }
+    ],
+    "subtotal": 6,
+    "tax": 0,
+    "total": 6,
+    "balanceDue": 0,
+    "paymentSummary": {
+      "invoiceAmount": 6,
+      "payerFee": 0.03,
+      "totalCharged": 6.03,
+      "fees": [
+        {
+          "label": "text",
+          "percentageRate": 0.5,
+          "flatRateCents": 0,
+          "amountCents": 3,
+          "source": "text"
+        }
+      ]
+    },
+    "currency": "USD",
+    "status": "paid",
+    "publicInvoiceId": "text",
+    "environment": "test",
+    "paymentFromAddress": "0x0000000000000000000000000000000000000000",
+    "paymentTxHash": "text",
+    "externalMetadata": {
+      "runReference": "text"
+    },
+    "remindersSent": [],
+    "remindersDisabled": false,
+    "createdAt": "2026-11-16T12:00:00.000Z",
+    "updatedAt": "2026-11-16T12:00:00.000Z",
+    "links": {
+      "invoice": "https://pay.oncade.xyz/…"
+    }
+  }
+}

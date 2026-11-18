@@ -1,0 +1,50 @@
+{
+  "status": 200,
+  "body": {
+    "_id": "000000000000000000000015",
+    "businessId": "000000000000000000000002",
+    "createdBy": "text",
+    "createdByPlatformId": "text",
+    "totalAmountCents": 600,
+    "totalFeeCents": 0,
+    "deductedFeeCents": 0,
+    "payerTotalCents": 600,
+    "currency": "USD",
+    "memo": "text",
+    "status": "cancelled",
+    "payoutPath": "dashboard",
+    "environment": "test",
+    "lineItems": [
+      {
+        "email": "person@example.com",
+        "name": "text",
+        "percentage": 16.666666666666664,
+        "amountCents": 100,
+        "method": "gift",
+        "status": "pending"
+      },
+      {
+        "email": "person@example.com",
+        "name": "text",
+        "percentage": 33.33333333333333,
+        "amountCents": 200,
+        "method": "gift",
+        "status": "pending"
+      },
+      {
+        "email": "person@example.com",
+        "name": "text",
+        "percentage": 50,
+        "amountCents": 300,
+        "method": "gift",
+        "status": "pending"
+      }
+    ],
+    "feeLineItems": [],
+    "recipientPaysPercentage": true,
+    "recipientPaysPlatformFeePercentage": true,
+    "cancelledAt": "2026-11-16T12:00:00.000Z",
+    "createdAt": "2026-11-16T12:00:00.000Z",
+    "updatedAt": "2026-11-16T12:00:00.000Z"
+  }
+}

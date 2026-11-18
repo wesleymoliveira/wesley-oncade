@@ -1,0 +1,128 @@
+{
+  "family": "invoice-templates",
+  "at": "2026-11-17",
+  "calls": [
+    {
+      "endpoint": "POST /invoice-templates",
+      "status": 201,
+      "code": null,
+      "asked": "create a template"
+    },
+    {
+      "endpoint": "GET /invoice-templates/{templateId}",
+      "status": 200,
+      "code": null,
+      "asked": "read it"
+    },
+    {
+      "endpoint": "GET /invoice-templates",
+      "status": 200,
+      "code": null,
+      "asked": "list them"
+    },
+    {
+      "endpoint": "PUT /invoice-templates/{templateId}",
+      "status": 200,
+      "code": null,
+      "asked": "pause it"
+    },
+    {
+      "endpoint": "POST /invoice-templates",
+      "status": 400,
+      "code": "INVALID_TEMPLATE",
+      "asked": "anchor day 31"
+    },
+    {
+      "endpoint": "POST /invoice-templates",
+      "status": 400,
+      "code": "INVALID_TEMPLATE",
+      "asked": "no items"
+    },
+    {
+      "endpoint": "POST /invoice-templates",
+      "status": 400,
+      "code": "INVALID_TEMPLATE",
+      "asked": "no name"
+    },
+    {
+      "endpoint": "POST /invoice-templates",
+      "status": 400,
+      "code": "INVALID_TEMPLATE",
+      "asked": "two kinds of receiver"
+    },
+    {
+      "endpoint": "POST /invoice-templates",
+      "status": 201,
+      "code": null,
+      "asked": "create with a key"
+    },
+    {
+      "endpoint": "POST /invoice-templates",
+      "status": 201,
+      "code": null,
+      "asked": "the same create, same key"
+    },
+    {
+      "endpoint": "DELETE /invoice-templates/{templateId}",
+      "status": 204,
+      "code": null,
+      "asked": "delete it"
+    },
+    {
+      "endpoint": "DELETE /invoice-templates/{templateId}",
+      "status": 404,
+      "code": "TEMPLATE_NOT_FOUND",
+      "asked": "delete it twice"
+    },
+    {
+      "endpoint": "GET /invoice-templates/{templateId}",
+      "status": 404,
+      "code": "TEMPLATE_NOT_FOUND",
+      "asked": "read a deleted one"
+    },
+    {
+      "endpoint": "PUT /invoice-templates/{templateId}",
+      "status": 404,
+      "code": "TEMPLATE_NOT_FOUND",
+      "asked": "update a deleted one"
+    },
+    {
+      "endpoint": "GET /invoice-templates/{templateId}",
+      "status": 404,
+      "code": "TEMPLATE_NOT_FOUND",
+      "asked": "read an id that does not exist"
+    },
+    {
+      "endpoint": "DELETE /invoice-templates/{templateId}",
+      "status": 404,
+      "code": "TEMPLATE_NOT_FOUND",
+      "asked": "clean up"
+    },
+    {
+      "endpoint": "DELETE /invoice-templates/{templateId}",
+      "status": 204,
+      "code": null,
+      "asked": "clean up"
+    },
+    {
+      "endpoint": "DELETE /invoice-templates/{templateId}",
+      "status": 204,
+      "code": null,
+      "asked": "clean up"
+    },
+    {
+      "endpoint": "GET /invoice-templates",
+      "status": 200,
+      "code": null,
+      "asked": "what is left"
+    }
+  ],
+  "answers": {
+    "happy path": "create 201 active, next run set; read 200 active; list 200, 1 found; pause 200 paused",
+    "validation": "anchor day 31 400 INVALID_TEMPLATE; no items 400 INVALID_TEMPLATE; no name 400 INVALID_TEMPLATE; both receivers 400 INVALID_TEMPLATE",
+    "repeated key": "the second made a second template (201 active)",
+    "wrong state": "delete 204; delete twice 404 TEMPLATE_NOT_FOUND; read deleted 404 TEMPLATE_NOT_FOUND; update deleted 404 TEMPLATE_NOT_FOUND; unknown id 404 TEMPLATE_NOT_FOUND",
+    "left behind": "0 template(s) of this session still listed",
+    "webhooks delivered": "none"
+  }
+}

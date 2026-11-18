@@ -1,0 +1,293 @@
+{
+  "family": "campaigns",
+  "at": "2026-11-17",
+  "calls": [
+    {
+      "endpoint": "POST /campaigns",
+      "status": 201,
+      "code": null,
+      "asked": "create a campaign"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}",
+      "status": 200,
+      "code": null,
+      "asked": "read it"
+    },
+    {
+      "endpoint": "GET /campaigns",
+      "status": 200,
+      "code": null,
+      "asked": "list them"
+    },
+    {
+      "endpoint": "PATCH /campaigns/{campaignId}",
+      "status": 200,
+      "code": null,
+      "asked": "change its public name"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}/payout-wallet/balance",
+      "status": 200,
+      "code": null,
+      "asked": "the wallet that pays it"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/users/{userRef}/link/initiate",
+      "status": 201,
+      "code": null,
+      "asked": "a link session for someone new"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}/users/link/details",
+      "status": 200,
+      "code": null,
+      "asked": "read the link session"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/link/users/initiate",
+      "status": 410,
+      "code": null,
+      "asked": "the path the guide shows for it"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/link-invites",
+      "status": 201,
+      "code": null,
+      "asked": "a shareable invite"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}/link-invites",
+      "status": 200,
+      "code": null,
+      "asked": "list the invites"
+    },
+    {
+      "endpoint": "PATCH /campaigns/{campaignId}/link-invites/{code}",
+      "status": 200,
+      "code": null,
+      "asked": "pause the invite"
+    },
+    {
+      "endpoint": "DELETE /campaigns/{campaignId}/link-invites/{code}",
+      "status": 200,
+      "code": null,
+      "asked": "revoke the invite"
+    },
+    {
+      "endpoint": "DELETE /campaigns/{campaignId}/link-invites/{code}",
+      "status": 404,
+      "code": "LINK_INVITE_NOT_FOUND",
+      "asked": "revoke it twice"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}/users",
+      "status": 200,
+      "code": null,
+      "asked": "who joined"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/fund-sessions",
+      "status": 201,
+      "code": null,
+      "asked": "open a fund session"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/fund-sessions",
+      "status": 200,
+      "code": null,
+      "asked": "the same, same key"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}/fund-sessions/{handle}",
+      "status": 200,
+      "code": null,
+      "asked": "read the fund session"
+    },
+    {
+      "endpoint": "DELETE /campaigns/{campaignId}/fund-sessions/{handle}",
+      "status": 200,
+      "code": null,
+      "asked": "cancel it, as the guide says"
+    },
+    {
+      "endpoint": "PUT /campaigns/{campaignId}/start",
+      "status": 500,
+      "code": null,
+      "asked": "start it"
+    },
+    {
+      "endpoint": "PUT /campaigns/{campaignId}/start",
+      "status": 500,
+      "code": null,
+      "asked": "start it again"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}",
+      "status": 200,
+      "code": null,
+      "asked": "read it after the start"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/events",
+      "status": 404,
+      "code": null,
+      "asked": "an event for someone who never joined"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/events",
+      "status": 404,
+      "code": null,
+      "asked": "an event that is not configured"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}/users/{userRef}/wallet/balance",
+      "status": 404,
+      "code": "USER_NOT_LINKED",
+      "asked": "the balance of someone who never joined"
+    },
+    {
+      "endpoint": "POST /campaigns/{campaignId}/users/{userRef}/link/remove",
+      "status": 404,
+      "code": null,
+      "asked": "remove someone who never joined"
+    },
+    {
+      "endpoint": "PUT /campaigns/{campaignId}/stop",
+      "status": 500,
+      "code": null,
+      "asked": "stop it"
+    },
+    {
+      "endpoint": "PUT /campaigns/{campaignId}/stop",
+      "status": 500,
+      "code": null,
+      "asked": "stop it again"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}",
+      "status": 200,
+      "code": null,
+      "asked": "read it after the stop"
+    },
+    {
+      "endpoint": "GET /campaigns/{campaignId}",
+      "status": 404,
+      "code": null,
+      "asked": "read a campaign that does not exist"
+    },
+    {
+      "endpoint": "DELETE /campaigns/{campaignId}",
+      "status": 204,
+      "code": null,
+      "asked": "delete it"
+    },
+    {
+      "endpoint": "DELETE /campaigns/{campaignId}",
+      "status": 404,
+      "code": null,
+      "asked": "delete it twice"
+    },
+    {
+      "endpoint": "POST /campaigns",
+      "status": 400,
+      "code": null,
+      "asked": "no name"
+    },
+    {
+      "endpoint": "POST /campaigns",
+      "status": 400,
+      "code": null,
+      "asked": "the example of the guide: amounts as strings"
+    },
+    {
+      "endpoint": "POST /campaigns",
+      "status": 400,
+      "code": null,
+      "asked": "a payout amount that is not a number"
+    },
+    {
+      "endpoint": "POST /campaigns",
+      "status": 201,
+      "code": null,
+      "asked": "a webhook URL without https"
+    },
+    {
+      "endpoint": "POST /campaigns",
+      "status": 201,
+      "code": null,
+      "asked": "create with a key"
+    },
+    {
+      "endpoint": "POST /campaigns",
+      "status": 201,
+      "code": null,
+      "asked": "the same create, same key"
+    },
+    {
+      "endpoint": "PUT /campaigns/{campaignId}/stop",
+      "status": 404,
+      "code": null,
+      "asked": "clean up: stop"
+    },
+    {
+      "endpoint": "DELETE /campaigns/{campaignId}",
+      "status": 404,
+      "code": null,
+      "asked": "clean up: delete"
+    },
+    {
+      "endpoint": "PUT /campaigns/{campaignId}/stop",
+      "status": 500,
+      "code": null,
+      "asked": "clean up: stop"
+    },
+    {
+      "endpoint": "DELETE /campaigns/{campaignId}",
+      "status": 204,
+      "code": null,
+      "asked": "clean up: delete"
+    },
+    {
+      "endpoint": "PUT /campaigns/{campaignId}/stop",
+      "status": 500,
+      "code": null,
+      "asked": "clean up: stop"
+    },
+    {
+      "endpoint": "DELETE /campaigns/{campaignId}",
+      "status": 204,
+      "code": null,
+      "asked": "clean up: delete"
+    },
+    {
+      "endpoint": "PUT /campaigns/{campaignId}/stop",
+      "status": 500,
+      "code": null,
+      "asked": "clean up: stop"
+    },
+    {
+      "endpoint": "DELETE /campaigns/{campaignId}",
+      "status": 204,
+      "code": null,
+      "asked": "clean up: delete"
+    },
+    {
+      "endpoint": "GET /campaigns",
+      "status": 200,
+      "code": null,
+      "asked": "what is left"
+    }
+  ],
+  "answers": {
+    "happy path": "create 201 active with payoutAmount 100; read 200 active, the event comes back as 100; list 200, 1 found; rename 200 active; payout wallet balance 200",
+    "joining": "link session 201; details 200 pending; the guide's path 410; invite 201 active; list invites 200; pause 200 paused; revoke 200 revoked; revoke twice 404 LINK_INVITE_NOT_FOUND; users 200, 0 joined",
+    "fund sessions": "open 201; same key 200, the same session; read 200 pending; cancel (in the guide, not in the reference) 200",
+    "start and stop": "created as \"active\"; start 500; start again 500; status after active; stop 500; stop again 500; status after active",
+    "wrong state": "event for nobody 404; unknown event 404; balance of nobody 404 USER_NOT_LINKED; remove nobody 404; unknown campaign 404; delete 204; delete twice 404",
+    "validation": "no name 400; the guide's example, amounts as strings 400; bad amount 400; http webhook URL 201 active",
+    "repeated key": "the second made a second campaign (201 active)",
+    "left behind": "0 campaign(s) still listed",
+    "webhooks delivered": "Platform.Campaign.Created × 4, Platform.Campaign.Updated × 1, Platform.Campaign.Deleted × 4"
+  }
+}

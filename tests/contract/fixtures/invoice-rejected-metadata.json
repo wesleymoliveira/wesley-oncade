@@ -1,0 +1,6 @@
+{
+  "status": 400,
+  "body": {
+    "error": "metadata is not accepted; send caller data in externalMetadata"
+  }
+}

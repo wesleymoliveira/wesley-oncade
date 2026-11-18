@@ -1,0 +1,7 @@
+{
+  "status": 422,
+  "body": {
+    "error": "Cannot cancel invoice in 'cancelled' status",
+    "code": "INVOICE_INVALID_STATUS"
+  }
+}

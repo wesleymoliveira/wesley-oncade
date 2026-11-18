@@ -1,0 +1,50 @@
+# Local infrastructure for the demo. Every port is bound to 127.0.0.1. MongoDB,
+# Grafana and Prometheus are moved off their default ports, so they do not
+# collide with other projects on the machine.
+# Nothing is persisted: `docker compose down` gives a clean start.
+name: payout-runs
+
+services:
+  # One-node replica set: MongoDB needs it for multi-document transactions.
+  # The member address is 127.0.0.1:27027 on purpose, so the address the driver
+  # discovers is reachable from the host as well as from inside the container.
+  mongo:
+    image: mongo:8.0
+    command: ['--replSet', 'rs0', '--port', '27027', '--bind_ip_all']
+    ports: ['127.0.0.1:27027:27027']
+    healthcheck:
+      test:
+        - CMD
+        - mongosh
+        - --port
+        - '27027'
+        - --quiet
+        - --eval
+        - "try { rs.status().ok } catch (e) { rs.initiate({ _id: 'rs0', members: [{ _id: 0, host: '127.0.0.1:27027' }] }).ok }"
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+  # ElasticMQ speaks the SQS API. It is an emulator: this project has not run on AWS.
+  queue:
+    image: softwaremill/elasticmq-native:1.7.1
+    ports: ['127.0.0.1:9324:9324']
+
+  # Grafana + Tempo (traces) + Loki (logs) + Prometheus (metrics) + an
+  # OpenTelemetry collector, in one image meant for development and demos.
+  telemetry:
+    image: grafana/otel-lgtm:0.40.0
+    ports:
+      - '127.0.0.1:3301:3000' # Grafana
+      - '127.0.0.1:4318:4318' # OTLP over HTTP
+      - '127.0.0.1:9091:9090' # Prometheus
+    volumes:
+      - ./observability/prometheus.yaml:/otel-lgtm/prometheus.yaml:ro
+      - ./observability/alerts.yaml:/otel-lgtm/alerts.yaml:ro
+      - ./observability/dashboards.yaml:/otel-lgtm/grafana/conf/provisioning/dashboards/payout-runs.yaml:ro
+      - ./observability/dashboard.json:/otel-lgtm/grafana/conf/provisioning/dashboards/payout-runs/dashboard.json:ro
+    environment:
+      # Local only: open Grafana without a login.
+      GF_AUTH_ANONYMOUS_ENABLED: 'true'
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /otel-lgtm/grafana/conf/provisioning/dashboards/payout-runs/dashboard.json

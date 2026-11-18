@@ -1,0 +1,152 @@
+{
+  "family": "platform",
+  "at": "2026-11-17",
+  "calls": [
+    {
+      "endpoint": "GET /me",
+      "status": 200,
+      "code": null,
+      "asked": "who am I"
+    },
+    {
+      "endpoint": "GET /grants",
+      "status": 200,
+      "code": null,
+      "asked": "who granted what"
+    },
+    {
+      "endpoint": "GET /business",
+      "status": 200,
+      "code": null,
+      "asked": "the business record"
+    },
+    {
+      "endpoint": "GET /business/readiness",
+      "status": 200,
+      "code": null,
+      "asked": "is it ready to move money"
+    },
+    {
+      "endpoint": "GET /business/wallet-balance",
+      "status": 200,
+      "code": null,
+      "asked": "its balance"
+    },
+    {
+      "endpoint": "POST /me/scopes",
+      "status": 400,
+      "code": "INVALID_SCOPES",
+      "asked": "ask for a scope I already have"
+    },
+    {
+      "endpoint": "POST /me/scopes",
+      "status": 400,
+      "code": null,
+      "asked": "ask for a scope that does not exist"
+    },
+    {
+      "endpoint": "POST /me/scopes",
+      "status": 400,
+      "code": null,
+      "asked": "ask for no scope"
+    },
+    {
+      "endpoint": "POST /link-sessions",
+      "status": 201,
+      "code": null,
+      "asked": "open a link session"
+    },
+    {
+      "endpoint": "GET /link-sessions/{sessionId}",
+      "status": 200,
+      "code": null,
+      "asked": "read it"
+    },
+    {
+      "endpoint": "GET /link-sessions",
+      "status": 200,
+      "code": null,
+      "asked": "list them"
+    },
+    {
+      "endpoint": "DELETE /link-sessions/{sessionId}",
+      "status": 200,
+      "code": null,
+      "asked": "cancel it"
+    },
+    {
+      "endpoint": "DELETE /link-sessions/{sessionId}",
+      "status": 404,
+      "code": null,
+      "asked": "cancel it twice"
+    },
+    {
+      "endpoint": "GET /link-sessions/{sessionId}",
+      "status": 404,
+      "code": null,
+      "asked": "read a cancelled one"
+    },
+    {
+      "endpoint": "POST /link-sessions",
+      "status": 400,
+      "code": null,
+      "asked": "a link session for a scope that does not exist"
+    },
+    {
+      "endpoint": "POST /invites",
+      "status": 409,
+      "code": "GRANT_ALREADY_EXISTS",
+      "asked": "invite my own business"
+    },
+    {
+      "endpoint": "POST /invites",
+      "status": 400,
+      "code": "INVALID_INVITE_SCOPES",
+      "asked": "invite with a platform scope"
+    },
+    {
+      "endpoint": "POST /invites",
+      "status": 201,
+      "code": null,
+      "asked": "invite a business that does not exist"
+    },
+    {
+      "endpoint": "GET /invites",
+      "status": 200,
+      "code": null,
+      "asked": "list the invites"
+    },
+    {
+      "endpoint": "POST /invites/{inviteId}/cancel",
+      "status": 200,
+      "code": null,
+      "asked": "cancel the invite"
+    },
+    {
+      "endpoint": "POST /invites/{inviteId}/cancel",
+      "status": 400,
+      "code": "INVITE_ALREADY_ACCEPTED",
+      "asked": "cancel it twice"
+    },
+    {
+      "endpoint": "GET /invoices",
+      "status": 400,
+      "code": null,
+      "asked": "a business call without the business header"
+    },
+    {
+      "endpoint": "GET /me",
+      "status": 401,
+      "code": "INVALID_KEY",
+      "asked": "a key that is not valid"
+    }
+  ],
+  "answers": {
+    "happy path": "me 200, platform pending, key environment test; grants 200; business 200; readiness 200, ready true; wallet balance 200",
+    "scope requests": "already approved 400 INVALID_SCOPES; unknown scope 400; empty list 400",
+    "link sessions": "open 201; read 200 pending; list 200, 3 listed; cancel 200; cancel twice 404; read cancelled 404; unknown scope 400",
+    "invites": "my own business 409 GRANT_ALREADY_EXISTS; a platform scope 400 INVALID_INVITE_SCOPES; a business that does not exist 201 pending; list 200, 2 listed; cancel 200; cancel twice 400 INVITE_ALREADY_ACCEPTED",
+    "who is calling": "no X-Target-Business-Id 400; an unknown key 401 INVALID_KEY",
+    "webhooks delivered": "Platform.Link.Started × 1"
+  }
+}

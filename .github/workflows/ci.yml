@@ -1,0 +1,23 @@
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      # MongoDB (one-node replica set) and the queue. No credentials anywhere:
+      # the flow tests run against the local stand-in.
+      - run: docker compose up -d --wait mongo queue
+      - run: npm run check
+      - run: npm run test:flows
+      - run: npm run build

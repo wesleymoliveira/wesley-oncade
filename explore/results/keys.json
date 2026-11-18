@@ -1,0 +1,129 @@
+{
+  "family": "keys",
+  "at": "2026-11-17",
+  "calls": [
+    {
+      "endpoint": "GET /me",
+      "status": 200,
+      "code": null,
+      "asked": "who am I"
+    },
+    {
+      "endpoint": "GET /me/keys",
+      "status": 200,
+      "code": null,
+      "asked": "list the keys"
+    },
+    {
+      "endpoint": "POST /me/keys",
+      "status": 201,
+      "code": null,
+      "asked": "create a throwaway key"
+    },
+    {
+      "endpoint": "POST /me/keys",
+      "status": 201,
+      "code": null,
+      "asked": "the same create, same key"
+    },
+    {
+      "endpoint": "GET /me/keys/{keyId}",
+      "status": 200,
+      "code": null,
+      "asked": "read it"
+    },
+    {
+      "endpoint": "GET /me",
+      "status": 200,
+      "code": null,
+      "asked": "use it"
+    },
+    {
+      "endpoint": "GET /me/keys",
+      "status": 403,
+      "code": null,
+      "asked": "use it beyond its scopes"
+    },
+    {
+      "endpoint": "POST /me/keys",
+      "status": 400,
+      "code": null,
+      "asked": "a key with no scope"
+    },
+    {
+      "endpoint": "POST /me/keys",
+      "status": 400,
+      "code": null,
+      "asked": "a key with a scope that does not exist"
+    },
+    {
+      "endpoint": "POST /me/keys/{keyId}/rotate",
+      "status": 201,
+      "code": null,
+      "asked": "rotate the throwaway key"
+    },
+    {
+      "endpoint": "GET /me",
+      "status": 200,
+      "code": null,
+      "asked": "the old key during the grace period"
+    },
+    {
+      "endpoint": "GET /me",
+      "status": 200,
+      "code": null,
+      "asked": "the new key"
+    },
+    {
+      "endpoint": "DELETE /me/keys/{keyId}",
+      "status": 200,
+      "code": null,
+      "asked": "revoke the throwaway key"
+    },
+    {
+      "endpoint": "DELETE /me/keys/{keyId}",
+      "status": 400,
+      "code": "ALREADY_REVOKED",
+      "asked": "revoke it twice"
+    },
+    {
+      "endpoint": "GET /me",
+      "status": 403,
+      "code": "KEY_REVOKED",
+      "asked": "use a revoked key"
+    },
+    {
+      "endpoint": "GET /me/keys/{keyId}",
+      "status": 404,
+      "code": null,
+      "asked": "read a key that does not exist"
+    },
+    {
+      "endpoint": "DELETE /me/keys/{keyId}",
+      "status": 200,
+      "code": null,
+      "asked": "clean up"
+    },
+    {
+      "endpoint": "DELETE /me/keys/{keyId}",
+      "status": 200,
+      "code": null,
+      "asked": "clean up"
+    },
+    {
+      "endpoint": "GET /me/keys",
+      "status": 200,
+      "code": null,
+      "asked": "what is left"
+    }
+  ],
+  "answers": {
+    "happy path": "list 200, 1 key(s); create 201, raw key returned true; read 200; the new key works 200; beyond its scopes 403",
+    "repeated key": "the second create made a second API key (201)",
+    "validation": "no scope 400; unknown scope 400",
+    "rotation": "rotate 201; old key during the grace period 200; new key 200",
+    "wrong state": "revoke 200; revoke twice 400 ALREADY_REVOKED; a revoked key 403 KEY_REVOKED; unknown key id 404",
+    "left behind": "1 active key(s) at the end; 1 key(s) listed at the start",
+    "webhooks delivered": "none"
+  }
+}

@@ -1,0 +1,80 @@
+# Alert rules, evaluated by the Prometheus inside the local telemetry
+# container (see docker-compose.yml). `npm run drill` causes each failure
+# and reads the state of its alert from Prometheus, so "firing" here is
+# observed, not assumed.
+#
+# severity: page   = wake someone now: money may be wrong or stuck
+#           ticket = look at it in working hours
+#
+# The time thresholds are short so a drill finishes in seconds. The values
+# I would start with in production are in docs/observability.md.
+
+groups:
+  - name: payout-runs
+    rules:
+      - alert: LedgerOutOfBalance
+        expr: max(ledger_drift_accounts) > 0
+        labels: { severity: page }
+        annotations:
+          summary: A stored balance differs from its ledger entries.
+          runbook: docs/runbook.md#ledgeroutofbalance
+
+      - alert: BatchWaitingForAPerson
+        expr: max(batches_parked) > 0
+        labels: { severity: page }
+        annotations:
+          summary: A batch is parked. We do not know if it was sent, or the provider and we disagree.
+          runbook: docs/runbook.md#batchwaitingforaperson
+
+      - alert: BatchOutcomeUnknown
+        expr: max(batches_oldest_sending_age_seconds) > 60
+        labels: { severity: page }
+        annotations:
+          summary: A batch has been in "sending" for over a minute. Nobody knows yet whether it was sent.
+          runbook: docs/runbook.md#batchoutcomeunknown
+
+      - alert: DeadLetters
+        expr: max(queue_messages{state="dead_letter"}) > 0
+        labels: { severity: page }
+        annotations:
+          summary: A message failed three times and is in the dead-letter queue.
+          runbook: docs/runbook.md#deadletters
+
+      # The check that catches the others must itself be watched. Also fires
+      # when the worker is down, because then nothing updates the gauge.
+      - alert: CheckStopped
+        expr: (time() - max(reconcile_last_success_seconds) > 30) or absent(reconcile_last_success_seconds)
+        labels: { severity: page }
+        annotations:
+          summary: The periodic check has not completed for 30 seconds. The safety net has a hole.
+          runbook: docs/runbook.md#checkstopped
+
+      - alert: ProviderBreakerOpen
+        expr: max(breaker_state) == 2
+        labels: { severity: ticket }
+        annotations:
+          summary: The provider stopped answering and the circuit breaker is open. Work is waiting in the queue.
+          runbook: docs/runbook.md#providerbreakeropen
+
+      # The pull found a payment the webhook should have announced.
+      - alert: WebhookPathBroken
+        expr: sum(increase(funding_recorded_total{path="pull"}[2m])) > 0
+        labels: { severity: ticket }
+        annotations:
+          summary: A payment was found by reading the provider, not by its webhook. Check the webhook path.
+          runbook: docs/runbook.md#webhookpathbroken
+
+      - alert: ForgedWebhook
+        expr: sum(increase(webhooks_received_total{outcome="bad_signature"}[2m])) > 0
+        labels: { severity: ticket }
+        annotations:
+          summary: A webhook arrived with a wrong signature. A wrong secret, a parsed body, or someone probing.
+          runbook: docs/runbook.md#forgedwebhook
+
+      - alert: OutboxNotPublishing
+        expr: max(outbox_unpublished) > 100
+        for: 1m
+        labels: { severity: ticket }
+        annotations:
+          summary: Events are saved and not reaching the queue. The relay is stuck or the queue is down.
+          runbook: docs/runbook.md#outboxnotpublishing
